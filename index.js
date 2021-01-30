@@ -1,16 +1,13 @@
 const express = require ('express');
-const handlebars = require ('express-handlebars')
 const config = require ('./config/config');
+const setupExpress = require('./config/express');
+const fs = require('fs/promises')
 const app = express();
+setupExpress(app);
 
-app.engine('hbs', handlebars({
-    extname: 'hbs'
-}));
-app.set('view engine', 'hbs')
-app.use(express.static('static') )
 app.use(express.urlencoded());
 app.use(express.json());
-
+var file = require('./config/db.json')
 app.get('/', (req, res)=>{
     res.render('home', {layout:false});
      })
@@ -19,9 +16,17 @@ app.route('/create')
     res.render('create', {layout:false})
 })
 .post( (req, res)=>{
-    res.send(req.body.name);
-})
-
+  
+    var cube = {
+        'name': req.body.name,
+        'description': req.body.description,
+        'image': req.body.imageUrl,
+        'difficultyLevel': req.body.difficultyLevel
+    }
+    fs.writeFile('./config/db.json',JSON.stringify(file.push(cube)))
+      .then(res.redirect('/'))
+}
+)
 app.get('/about', (req, res)=>{
     res.render('about',  {layout:false})
 })
