@@ -6,7 +6,7 @@ router.use(express.urlencoded());
 router.use(express.json());
 
 router.get('/', (req, res)=>{
-    res.render('create', {layout:false})
+    res.render('create')
 })
 router.post('/', (req, res)=>{
   
