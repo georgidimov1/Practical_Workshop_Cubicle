@@ -6,7 +6,7 @@ router.use(express.urlencoded());
 router.use(express.json());
 
 router.get('/', (req, res)=>{
-    res.render('create')
+    res.render('create',{title: 'Create'})
 })
 router.post('/', (req, res)=>{
   
@@ -20,5 +20,8 @@ router.post('/', (req, res)=>{
       .then(res.redirect('/'))
 }
 )
+router.get('/:productId', (req, res)=>{
+    res.render('details',{title: 'Details'})
+})
 
 module.exports = router;
