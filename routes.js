@@ -6,10 +6,10 @@ const router = Router();
 
 router.use('/', homeController);
 router.use('/create', pruductController);
-router.use('/details', pruductController);
+router.use('/details' , pruductController);
 router.use('/about', aboutController);
 router.get('*', (req,res)=>{
-    res.render('404', {layout:false})
+    res.render('404')
 })
 
 

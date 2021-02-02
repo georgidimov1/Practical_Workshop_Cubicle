@@ -16,7 +16,14 @@ let services = {
     },
     write: (cube)=>{
       return fs.writeFile(__dirname +'/../config/db.json',JSON.stringify(products.concat([cube])), (err)=>{console.log(err)});
-    }
+    },
+    finder: (id)=>{
+        return products.find(element => element.id=id)
+        },
+
+    getAll: products
+    
+    
  }
 
 module.exports = services;
