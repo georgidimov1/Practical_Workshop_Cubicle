@@ -15,13 +15,16 @@ let services = {
             data.difficultyLevel);
     },
     write: (cube)=>{
-      return fs.writeFile(__dirname +'/../config/db.json',JSON.stringify(products.concat([cube])), (err)=>{console.log(err)});
-    },
-    finder: (id)=>{
-        return products.find(element => element.id=id)
-        },
+        return fs.writeFile(__dirname +'/../config/db.json',JSON.stringify(products.concat([cube])), function(err) {
+                if (err) reject(err);
+                else resolve(data);
+            });
+         },
+    finder: (i)=>{
+           return products.find(el => el.id == i);
+                 },
 
-    getAll: products
+    getAll: ()=> {return products}
     
     
  }
