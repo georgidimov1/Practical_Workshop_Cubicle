@@ -24,9 +24,11 @@ let services = {
            return products.find(el => el.id == i);
                  },
 
-    getAll: ()=> {return products}
+    getAll: ()=> {return products},
     
-    
+    search: (n)=>{
+        return products.find(el => el.name == n);
+              }
  }
 
 module.exports = services;
