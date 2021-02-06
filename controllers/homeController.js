@@ -5,13 +5,9 @@ const url = require('url');
 
     router.get('/', (req, res)=>{
     const queryObject = url.parse(req.url,true).query;
-    
     let product = services.getAll();
-    console.log(queryObject.search)
-    prod = product.find(el => el.name.toLowerCase().includes(queryObject.search.toLowerCase())
-    )
-   console.log(prod);
-         res.render('home', {title:'Home', prod});
-         })
+    let newProduct =services.query(queryObject, product);
+    res.render('home', {title:'Home', newProduct});
+   })
 
 module.exports = router;

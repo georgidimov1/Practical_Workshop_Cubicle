@@ -25,10 +25,16 @@ let services = {
                  },
 
     getAll: ()=> {return products},
-    
-    search: (n)=>{
-        return products.find(el => el.name == n);
-              }
+
+    query: (q, p)=>{
+        let prod = {};
+                if(Object.keys(q).length !==0){
+                    prod = p.filter(el => el.name.toLowerCase().includes(q.search.toLowerCase()))
+                } else{prod=p}
+                
+                return prod;
+            }
+            
  }
 
 module.exports = services;
