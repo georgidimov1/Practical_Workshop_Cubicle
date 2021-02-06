@@ -27,14 +27,20 @@ let services = {
     getAll: ()=> {return products},
 
     query: (q, p)=>{
-        let prod = {};
-                if(Object.keys(q).length !==0){
-                    prod = p.filter(el => el.name.toLowerCase().includes(q.search.toLowerCase()))
-                } else{prod=p}
-                
+        let prod = p;
+                    if(q.search){
+                        prod = prod.filter(el => el.name.toLowerCase().includes(q.search.toLowerCase()))
+                        }
+                    if(q.from){
+                        prod = prod.filter(el => el.difficultyLevel>=q.from)
+                    }
+                    if(q.to){
+                        prod = prod.filter(el => el.difficultyLevel<=q.to)
+                    }                
+                                    
+                            
                 return prod;
-            }
-            
+    }        
  }
 
 module.exports = services;
