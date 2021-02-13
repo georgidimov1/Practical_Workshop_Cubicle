@@ -4,6 +4,7 @@ const express = require ('express');
 router.use(express.urlencoded());
 router.use(express.json());
 const services = require('../services/productService.js')
+const Cube = require('../models/cube.js')
 
 
 router.get('/', (req, res)=>{
@@ -11,14 +12,13 @@ router.get('/', (req, res)=>{
 })
 router.post('/', (req, res)=>{
 // validate inputs
-let cube = services.create(req.body);
-services.write(cube)
+let cube = services.create(req.body)
 .then(()=>{res.redirect('/')})
-.catch(()=> res.status(500).end())
+.catch(()=> res.status(500).end()) 
 })
 
 router.get('/:productId', (req, res)=>{
-    let det = services.finder(req.params.productId)
+    let det = Cube.finder(req.params.productId)
        res.render('details',{title: 'Details', det})
   })
 
