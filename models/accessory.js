@@ -1,9 +1,22 @@
-const fs = require('fs/promises');
-const { Model } = require('mongoose');
-const products = require ('../config/db.json')
+const mongoose = require('mongoose')
+const accessorySchema = new mongoose.Schema({
+        id: mongoose.Types.ObjectId,
+        name: {
+            type: String,
+            required: true
+        },
+        imageUrl: {
+            type: String,
+            required: true,
+            validate: /^https?/
+        },
 
-class Accessory extends Model{
-    
-}
+        description: {
+            type: String,
+            required: true,
+            maxlength: 50
+        }
+    });
 
-module.exports = Accessory;
+
+module.exports = mongoose.model('Accessory', accessorySchema);

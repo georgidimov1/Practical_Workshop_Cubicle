@@ -1,18 +1,10 @@
 const {Router} = require ('express');
 const router = Router();
 const Cube = require('../models/cube.js')
-const uniqid = require('uniqid')
-
-const products = require ('../config/db.json')
 
 let services = {
     create: (data)=>{
-        cube = new Cube(
-            uniqid(),
-            data.name,
-            data.description,
-            data.imageUrl,
-            data.difficultyLevel);
+        cube = new Cube(data)
     return cube.save();
     },
 
@@ -31,7 +23,13 @@ let services = {
                                     
                             
                 return prod;
-    }        
+    },
+    getAll: ()=>{
+        return Cube.find({}).lean();
+    },
+    finder: (i)=>{
+            return Cube.findById(i).lean()
+              }        
  }
 
 module.exports = services;

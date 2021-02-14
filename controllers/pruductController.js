@@ -1,11 +1,6 @@
 const {Router, request} = require ('express');
 const router = Router();
-const express = require ('express');
-router.use(express.urlencoded());
-router.use(express.json());
 const services = require('../services/productService.js')
-const Cube = require('../models/cube.js')
-
 
 router.get('/', (req, res)=>{
     res.render('create',{title: 'Create'})
@@ -18,8 +13,11 @@ let cube = services.create(req.body)
 })
 
 router.get('/:productId', (req, res)=>{
-    let det = Cube.finder(req.params.productId)
-       res.render('details',{title: 'Details', det})
+    console.log(req.params.productId)
+    services.finder(req.params.productId)
+      .then (det => {
+           res.render('details',{title: 'Details', det})
+        }) 
   })
 
 
