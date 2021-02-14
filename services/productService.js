@@ -4,7 +4,7 @@ const Cube = require('../models/cube.js')
 
 let services = {
     create: (data)=>{
-        cube = new Cube(data)
+        let cube = new Cube(data)
     return cube.save();
     },
 
