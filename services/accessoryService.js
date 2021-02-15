@@ -1,12 +1,11 @@
-const {Router} = require ('express');
-const router = Router();
 const Accessory = require('../models/accessory.js')
 
 let accessoryServices = {
     create: (data)=>{
         let accessory = new Accessory(data)
+        console.log(accessory)
     return accessory.save();
-     },
+     }
 
 
 //      query: (q, p)=>{

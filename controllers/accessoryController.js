@@ -11,7 +11,10 @@ router.post('/create',urlencodedParser, (req, res)=>{
     // validate inputs
     //console.log(req.body)
     accessoryServices.create(req.body)
-    .then(()=>{res.redirect('/')})
+    .then(()=>{
+       res.redirect('/')
+        
+    })
     .catch(()=> res.status(500).end()) 
     })
 module.exports = router;
