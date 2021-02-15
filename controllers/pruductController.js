@@ -9,7 +9,6 @@ router.get('/', (req, res)=>{
 })
 router.post('/', urlencodedParser, (req, res)=>{
 // validate inputs
-console.log(req.body)
 services.create(req.body)
 .then(()=>{res.redirect('/')})
 .catch(()=> res.status(500).end()) 
