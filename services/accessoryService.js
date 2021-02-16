@@ -5,7 +5,7 @@ let accessoryServices = {
         let accessory = new Accessory(data)
         console.log(accessory)
     return accessory.save();
-     }
+     },
 
 
 //      query: (q, p)=>{
@@ -23,9 +23,9 @@ let accessoryServices = {
                             
 //                 return prod;
 //     },
-//     getAll: ()=>{
-//         return Cube.find({}).lean();
-//     },
+        getAll: ()=>{
+                           return Accessory.find({}).lean();
+        },
 //     finder: (i)=>{
 //             return Cube.findById(i).lean()
 //               }        
